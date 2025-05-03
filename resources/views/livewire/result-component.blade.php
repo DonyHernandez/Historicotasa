@@ -20,7 +20,7 @@
                                         <tr class="table-info">
                                             <th scope="col"> </th>
                                             <th scope="col"><center>EURO</center></th>
-                                            <th scope="col"><center>USD</center></th>
+                                            <th scope="col"><center>DOLAR</center></th>
                                             <th scope="col"><center>FECHA ACTUAL</center></th>
                                         </tr>
                                     </thead>
@@ -30,7 +30,7 @@
                                                 <td> </td>
                                                 <td><center> {{ $result['eur']}} </center></td>
                                                 <td><center> {{ $result['usd']}} </center></td>
-                                                <td><center>{{ date('d-m-Y', strtotime($result['fechaval2'])) }} </center></td>
+                                                <td><center>{{ date('d/m/Y', strtotime($result['fechaval2'])) }} </center></td>
                                             </tr>
                                         @endforeach
                                         </tbody>

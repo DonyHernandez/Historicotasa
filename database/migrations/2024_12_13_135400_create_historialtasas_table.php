@@ -13,15 +13,14 @@ return new class extends Migration
     {
         Schema::create('historialtasas', function (Blueprint $table) {
             $table->id();
-            $table->string('eur',7);
-            $table->string('cny',7);
-            $table->string('try',7);
-            $table->string('rub',7);
-            $table->string('usd',7);
-            $table->string('fechaope',250);
-            $table->string('fechaval1',250);
-            $table->string('fechaval2',250);
-
+            $table->date('fechaval1');
+            $table->date('fechaval2')->unique();
+            $table->string('eur');
+            $table->string('cny');
+            $table->string('try');
+            $table->string('rub');
+            $table->string('usd');
+            $table->string('fechaope');
             $table->timestamps();
         });
     }

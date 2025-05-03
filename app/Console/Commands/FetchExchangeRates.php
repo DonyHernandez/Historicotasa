@@ -5,9 +5,10 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Http;
 use Symfony\Component\DomCrawler\Crawler;
-Use App\Models\ExchangeRate;
+Use App\Models\Historialtasa;
 
-class FetchExchangeRates extends Command
+// class FetchExchangeRates extends Command
+class StoreBcvRate extends Command
 {
     /**
      * The name and signature of the console command.
@@ -89,24 +90,24 @@ class FetchExchangeRates extends Command
 
 
             // Crear La tasa
-            ExchangeRate::Create(
+            Historialtasa::Create(
                 [
                     // 'operacion' carga de la tasa en BCV.
-                    'date' => now()->toDateString(),
+                    'fechaval1' => now()->toDateString(),
                     //suma un dia para realizar la busqueda
-                    'fecha_tasa' => now()->addDay()->toDateString(),
-
-                    'eur' => $valorEuro,
+                    'fechaval2' => now()->addDay()->toDateString(),
                     // 'eur' => $valorNumericoEuro,
-                    'cny' => $valorYuan,
+                    'eur' => $valorEuro,
                     // 'cny' => $valorNumericoYuan,
-                    'try' => $valorLira,
+                    'cny' => $valorYuan,
                     // 'try' => $valorNumericoLira,
-                    'rub' => $valorRublo,
+                    'try' => $valorLira,
                     // 'rub' => $valorNumericoRublo,
-                    'usd' => $valorDolar,
+                    'rub' => $valorRublo,
                     // 'usd' => $valorNumericoDolar,
-                    'operacion_bcv' => $fechaFormateada,
+                    'usd' => $valorDolar,
+                    // Fecha de publicacion de la tasa en xls
+                    'fechaope' => $fechaFormateada,
 
                 ]
             );

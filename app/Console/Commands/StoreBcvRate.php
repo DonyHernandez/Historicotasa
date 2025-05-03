@@ -5,7 +5,7 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Http;
 use Symfony\Component\DomCrawler\Crawler;
-use App\Models\BcvRate;  //Code insertado Dony Hernandez
+Use App\Models\Historialtasa;
 
 class StoreBcvRate extends Command
 {
@@ -28,7 +28,6 @@ class StoreBcvRate extends Command
      */
     public function handle()
     {
-
         // $arrContextOptions=array(                                // se puede usar en desarrollo. NO usar en produccion.
         //     "ssl"=>array("verify_peer"=>false,
         //         "verify_peer_name"=>false,
@@ -93,21 +92,21 @@ class StoreBcvRate extends Command
             ExchangeRate::Create(
                 [
                     // 'operacion' carga de la tasa en BCV.
-                    'date' => now()->toDateString(),
+                    'fechaval1' => now()->toDateString(),
                     //suma un dia para realizar la busqueda
-                    'fecha_tasa' => now()->addDay()->toDateString(),
-
-                    'eur' => $valorEuro,
+                    'fechaval2' => now()->addDay()->toDateString(),
                     // 'eur' => $valorNumericoEuro,
-                    'cny' => $valorYuan,
+                    'eur' => $valorEuro,
                     // 'cny' => $valorNumericoYuan,
-                    'try' => $valorLira,
+                    'cny' => $valorYuan,
                     // 'try' => $valorNumericoLira,
-                    'rub' => $valorRublo,
+                    'try' => $valorLira,
                     // 'rub' => $valorNumericoRublo,
-                    'usd' => $valorDolar,
+                    'rub' => $valorRublo,
                     // 'usd' => $valorNumericoDolar,
-                    'operacion_bcv' => $fechaFormateada,
+                    'usd' => $valorDolar,
+                    // Fecha de publicacion de la tasa en xls
+                    'fechaope' => $fechaFormateada,
 
                 ]
             );
