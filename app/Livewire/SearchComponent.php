@@ -11,6 +11,8 @@ use Livewire\Attributes\On;
 use App\Models\Historialtasa;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Artisan;
+
 
 
 
@@ -22,6 +24,8 @@ class SearchComponent extends Component
     // public $inputValue = '';
     public $searchResults = [];
     public $showModal = false;
+
+    public $message = '';
     protected $rules = [
         'startDate' => 'required|date',
         'endDate' => 'required|date|after_or_equal:startDate',
@@ -64,6 +68,15 @@ class SearchComponent extends Component
     // dd($this->dispatch);
     }
 
+    /**
+     * Funcion boton actualizar tasa bcv por comando
+     * @return void
+     */
+    public function fetchRates()
+    {
+        Artisan::call('fetch:fetch-rates');
+        $this->message = 'Tasas actualizadas correctamente';
+    }
 
 
     public function render()

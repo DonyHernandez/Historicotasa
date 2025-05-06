@@ -89,7 +89,7 @@ class StoreBcvRate extends Command
 
 
             // Crear La tasa
-            ExchangeRate::Create(
+            Historialtasa::Create(
                 [
                     // 'operacion' carga de la tasa en BCV.
                     'fechaval1' => now()->toDateString(),

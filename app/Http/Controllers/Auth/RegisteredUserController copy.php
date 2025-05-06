@@ -32,21 +32,10 @@ class RegisteredUserController extends Controller
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class,
-            function ($attribute, $value, $fail){
-                $allowedDomain = 'citymarket.com.ve';
-                $emailDomain = explode('@', $value)[1] ?? '';
-                if($emailDomain !== $allowedDomain){
-                    $fail('solo se permiten correos electronicos con el domninio @' . $allowedDomain);
-                }
-            }
-
-
-        ],
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
-        // Si la validacion falla, redirige con errores
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,

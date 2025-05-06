@@ -16,16 +16,27 @@
                             Buscar
                         </button>
                         <button  class="btn btn-outline-danger" wire:click="resetDates">Resetear</button>
-                        <button  wire:click="#" class="btn btn-outline-warning">
-                            <span class="spinner-grow spinner-grow-sm"></span> Actualizar Tasa </button>
+
+                        <button  wire:click="fetchRates" class="btn btn-outline-warning">
+                            <span class="spinner-grow spinner-grow-sm"></span>
+                                Actualizar Tasa
+                        </button>
+
+
+
+
+
+
                     </div>
 
-                    {{-- <div class="col-1">
-                        <button  class="btn btn-outline-danger" wire:click="resetDates">Resetear</button>
-                    </div> --}}
                 </div>
         </div>
     </div>
+        @if ($message)
+            <div class="alert alert-success mt-3">
+                {{ $message }}
+            </div>
+        @endif
     <br>
 
                     {{-- <div class="table-responsive-sm"> --}}
