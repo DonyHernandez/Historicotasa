@@ -113,6 +113,7 @@ class StoreBcvRate extends Command
             $this->info('Exchange rates fetched and stored successfully.');
         } catch (\Exception $e) {
             $this->error('Error fetching exchange rates: ' . $e->getMessage());
+            // Enviar correo electrónico de error
             \Mail::to('dhernandez@citymarket.com.ve')->send(new \App\Mail\ExchangeRateError($e->getMessage()));
         }
     }

@@ -21,23 +21,35 @@
                             <span class="spinner-grow spinner-grow-sm"></span>
                                 Actualizar Tasa
                         </button>
-
-
-
-
-
-
                     </div>
 
                 </div>
         </div>
     </div>
-        @if ($message)
-            <div class="alert alert-success mt-3">
+
+
+        {{-- @if ($message)
+            <div id="alert" class="alert alert-success mt-3">
                 {{ $message }}
             </div>
-        @endif
+        @endif --}}
+
+        <div>
+            @if ($message)
+                <div x-data="{ show: true }"
+                    x-show="show"
+                    x-init="setTimeout(() => show = false, 5000)"
+                    class="alert alert-success mt-3">
+                    {{ $message }}
+                </div>
+            @endif
+        </div>
+
+
+
+
     <br>
+
 
                     {{-- <div class="table-responsive-sm"> --}}
                     <div class="table-container">
@@ -88,5 +100,16 @@
 <script>
     window.addEventListener('refresh-window', event => {
         location.reload();
+    });
+</script>
+
+<script>
+    // Opcional: Si usas Alpine.js (recomendado con Livewire)
+    document.addEventListener('livewire:load', function () {
+        Livewire.on('message-timer', (data) => {
+            setTimeout(() => {
+                this.message = '';
+            }, data.duration);
+        });
     });
 </script>

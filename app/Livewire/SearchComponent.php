@@ -75,7 +75,11 @@ class SearchComponent extends Component
     public function fetchRates()
     {
         Artisan::call('fetch:fetch-rates');
-        $this->message = 'Tasas actualizadas correctamente';
+        $this->message = 'Tasas Actualizadas Correctamente... ';
+
+        // Limpia el mensaje después de 5 segundos
+    // $this->dispatchBrowserEvent('message-timer', ['duration' => 5000]);
+    $this->dispatch('message-timer', ['duration' => 5000]);
     }
 
 
