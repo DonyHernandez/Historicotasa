@@ -12,27 +12,45 @@ class UserTable extends Component
     use withPagination;
 
 
-    public function mount()
-    {
-        // Obtener todos los usuarios
-        $this->users = User::all();
-    }
+    // public function mount()
+    // {
+    //     // Obtener todos los usuarios
+    //     $this->users = User::all();
+    // }
+
 
     public function toggleActive($userId)
     {
-        // Cambiar el estado activo/inactivo del usuario
-        $user = User::find($userId);
-        $user->active = !$user->active;
-        $user->save();
-        // Actualizar la lista de usuarios
-        $this->users = User::all();
+        try {
+            $user = User::findOrFail($userId);
+
+            $user->active = !$user->active;
+            $result = $user->save();
+
+            // Emitimos un evento de notificación
+            if ($result) {
+                $this->dispatch('notify', [
+                    'type' => 'success',
+                    'message' => 'Estado actualizado correctamente'
+        ]);
+        }else {
+            $this->dispatch('notify', [
+                'type' => 'error',
+                'message' => 'Error al actualizar el estado'
+            ]);
+        }
+        } catch (\Exception $e) {
+            $this->dispatch('notify', [
+                'type' => 'error',
+                'message' => 'Error al actualizar el estado: ' . $e->getMessage()
+            ]);
+        }
     }
 
     public function render()
     {
-        $users = User::paginate(3);
-        //$users = User::all()->paginate(3);
-        // dd($users);
-        return view('livewire.user-table', compact('users'));
+        return view('livewire.user-table', [
+            'users' => User::paginate(3)
+        ]);
     }
 }

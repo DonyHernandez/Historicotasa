@@ -21,8 +21,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'last_login_at',        // Fecha y hora del último inicio de sesión
         'active',              // Estado activo/inactivo
+        'last_login_at',        // Fecha y hora del último inicio de sesión
     ];
 
     /**

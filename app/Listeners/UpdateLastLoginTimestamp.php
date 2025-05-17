@@ -5,8 +5,8 @@ namespace App\Listeners;
 use App\Models\User;
 use Illuminate\Auth\Events\Login;
 use Carbon\Carbon;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Queue\InteractsWithQueue;
+// use Illuminate\Contracts\Queue\ShouldQueue;
+// use Illuminate\Queue\InteractsWithQueue;
 
 class UpdateLastLoginTimestamp
 {
@@ -21,7 +21,8 @@ class UpdateLastLoginTimestamp
     /**
      * Handle the event. Actualiza el timestamp del último inicio de sesión
      */
-    public function handle(object $event): void
+    // public function handle(object $event): void
+    public function handle(Login $event): void
     {
         $event->user->update([
             'last_login_at' => Carbon::now(),

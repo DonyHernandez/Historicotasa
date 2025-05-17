@@ -27,15 +27,8 @@
         </div>
     </div>
 
-
-        {{-- @if ($message)
-            <div id="alert" class="alert alert-success mt-3">
-                {{ $message }}
-            </div>
-        @endif --}}
-
         <div>
-            @if ($message)
+            @if($message)
                 <div x-data="{ show: true }"
                     x-show="show"
                     x-init="setTimeout(() => show = false, 5000)"
@@ -96,7 +89,7 @@
 
 
 </div>
-@livewireScripts
+{{-- @livewireScripts --}}
 <script>
     window.addEventListener('refresh-window', event => {
         location.reload();
@@ -105,11 +98,17 @@
 
 <script>
     // Opcional: Si usas Alpine.js (recomendado con Livewire)
-    document.addEventListener('livewire:load', function () {
-        Livewire.on('message-timer', (data) => {
-            setTimeout(() => {
+    document.addEventListener('livewire:load', () => {
+    Livewire.on('message-timer', ({ duration }) => {
+        Alpine.store('messages', {
+            clear() {
                 this.message = '';
-            }, data.duration);
+            }
         });
+
+        setTimeout(() => {
+            Alpine.store('messages').clear();
+        }, duration);
     });
+});
 </script>

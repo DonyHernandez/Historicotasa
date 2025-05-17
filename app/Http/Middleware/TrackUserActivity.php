@@ -21,7 +21,7 @@ class TrackUserActivity
     public function handle(Request $request, Closure $next): Response
     {
         if (Auth::check()) {
-            $expiresAt = Carbon::now()->addMinutes(5); // Expira en 5 minuto
+            $expiresAt = Carbon::now()->addMinutes(2); // Expira en 2 minuto
             Cache::put('user-is-online-' . Auth::user()->id, true, $expiresAt);
         }
 

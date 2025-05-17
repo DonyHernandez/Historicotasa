@@ -5,6 +5,27 @@
         </h2>
     </x-slot>
 
+
+
+    <!-- Agregar esto para las notificaciones -->
+    <div x-data="{ showNotification: false, message: '', type: '' }"
+        x-on:notify.window="
+            showNotification = true;
+            message = $event.detail.message;
+            type = $event.detail.type;
+            setTimeout(() => { showNotification = false }, 3000)
+        ">
+        <div x-show="showNotification"
+            x-transition
+            :class="{'bg-green-500': type === 'success', 'bg-red-500': type === 'error'}"
+            class="fixed top-4 right-4 p-4 rounded-lg text-white shadow-lg">
+            <span x-text="message"></span>
+        </div>
+    </div>
+
+
+
+
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
@@ -34,7 +55,12 @@
                             @endif
                         </center></td>
                         <td><center>
-                            <input type="checkbox" {{ $user->active ? 'checked' : '' }} wire:click="toggleActive({{ $user->id }})">
+                            <input
+                                type="checkbox"
+                                wire:click="toggleActive( {{ $user->id }} )"
+                                {{ $user->active ? 'checked' : ' ' }}
+                                wire:loading.attr="disabled"
+                            >
                         </center></td>
                     </tr>
                 @endforeach
@@ -49,3 +75,9 @@
 </div>
 </div>
 </x-app-layout>
+@livewireScripts
+<script>
+    window.addEventListener('notify', event => {
+        toastr[event.detail.type](event.detail.message);
+    });
+</script>

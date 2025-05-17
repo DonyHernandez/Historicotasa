@@ -13,7 +13,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule): void
     {
         // $schedule->command('inspire')->hourly();
-        $schedule->command('fetch:fetch-rates')->dailyAt('17:00');
+        $schedule->command('fetch:fetch-rates')->dailyAt('17:30');
     }
 
     /**
