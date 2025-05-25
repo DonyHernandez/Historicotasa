@@ -16,6 +16,12 @@ class TasaBcvController extends Controller
 
     }
 
+    public function usuario()
+    {
+        return view('usuario');
+
+    }
+
 //     public function ObtenerTasaBCV()
 //     {
 //         $client = new HttpBrowser();

@@ -3,21 +3,26 @@
 namespace App\Livewire;
 
 use Livewire\Component;
-use Livewire\withPagination;
+use Livewire\WithPagination;
 use App\Models\User;
 
 class UserTable extends Component
 {
-    public $users;
-    use withPagination;
-
+    // public $users;
+    use WithPagination;
 
     // public function mount()
     // {
-    //     // Obtener todos los usuarios
-    //     $this->users = User::all();
+    //     $this->loadUsers();
     // }
 
+    // protected function loadUsers()
+    // {
+    //     $this->users = User::query()
+    //         ->select(['id','name','email','active','last_login_at'])
+    //         ->latest()
+    //         ->paginate(3);
+    // }
 
     public function toggleActive($userId)
     {
