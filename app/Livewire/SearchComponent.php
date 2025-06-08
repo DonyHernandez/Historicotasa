@@ -42,8 +42,7 @@ class SearchComponent extends Component
         $this->dispatch('refresh-window');
 
     }
-
-
+    
     public function search()
     {
         $this->validate();

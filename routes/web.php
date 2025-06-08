@@ -24,13 +24,6 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-
-
-
-
-
-
-
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -39,11 +32,7 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/tasaind', [TasaBcvController::class, 'index'])->name('index');
 Route::get('/user-table', [TasaBcvController::class, 'usuario'])->name('user.table')->middleware('auth');
-// Route::get('/tasaind/tasa', [TasaBcvController::class, 'ObtenerTasaBCV'])->name('tasa');
-
-// Route::get('/user-table', [UserTable::class, 'render'])->name('user.table')->middleware('auth');
-
-// Route::get('/user-table', UserTable::class)->name('user.table')->middleware('auth');
+Route::get('/sincronizar', [TasaBcvController::class, 'sincro'])->name('dbsincro')->middleware('auth');
 
 
 

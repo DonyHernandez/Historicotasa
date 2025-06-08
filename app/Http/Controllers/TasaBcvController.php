@@ -21,6 +21,10 @@ class TasaBcvController extends Controller
         return view('usuario');
 
     }
+    public function sincro()
+    {
+        return view('dbsincronizar');
+    }
 
 //     public function ObtenerTasaBCV()
 //     {

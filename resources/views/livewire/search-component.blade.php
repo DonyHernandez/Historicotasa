@@ -17,7 +17,7 @@
                         </button>
                         <button  class="btn btn-outline-danger" wire:click="resetDates">Resetear</button>
 
-                        <button  wire:click="fetchRates" class="btn btn-outline-warning">
+                        <button  wire:click="fetchRates" wire:loading.attr="disabled" class="btn btn-outline-warning">
                             <span class="spinner-grow spinner-grow-sm"></span>
                                 Actualizar Tasa
                         </button>
@@ -47,7 +47,7 @@
                     {{-- <div class="table-responsive-sm"> --}}
                     <div class="table-container">
                         <table class="table table-striped table-hover">
-                            <thead class="table-dark sticky-top>
+                            <thead class="table-dark sticky-top">
                                 <tr class="table-primary">
                                     <th scope="col"> </th>
                                     {{-- <th scope="col">#</th> --}}
